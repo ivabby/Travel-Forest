@@ -36,12 +36,28 @@ function closeForm() {
 
 (function manageTotalUsers(){
 
+    let totalUsers = String(getRandom(100000, 200000));
+    totalUsers = addComma(totalUsers);
+
+    addTotalUsers(totalUsers);
+
+    function addTotalUsers(currentValue) {
+        let num = Number(currentValue.replace("," , ""));
+        num++;
+        num = String(num);
+        num = addComma(num);
+        $("#total-users").html(num);
+        setTimeout(function(){
+            addTotalUsers(num);
+        }, getRandom(100, 3000));
+    }
+
     function getRandom(min, max){
         return Math.floor(Math.random() * (max - min) + min);
     }
 
     function addComma(num){
-
+        return num.slice(0,3) + "," + num.slice(3,6);
     }
-    
+
 })();
